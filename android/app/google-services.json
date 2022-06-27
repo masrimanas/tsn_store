@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "372490329151",
+    "project_id": "tsn-store-fb",
+    "storage_bucket": "tsn-store-fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372490329151:android:6175ff9d6d1466529b2c8a",
+        "android_client_info": {
+          "package_name": "id.fansystem.tsn_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372490329151-r8940crogbebrjvs8kerutgooe92vcp7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAORxevz8MpZazkIzYTAu3K8PG_y0-ABnE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "372490329151-r8940crogbebrjvs8kerutgooe92vcp7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
