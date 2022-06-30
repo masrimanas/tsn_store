@@ -34,78 +34,68 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
-        if (state is AuthStateLoading) {
-          showDialog(context: context, builder: (_) => const CustomLoading());
-        } else if (state is AuthStateNone) {
-          Navigator.pushNamedAndRemoveUntil(
-              context, AccountPage.route, (route) => false);
-        }
-      },
-      child: SafeArea(
-        child: Scaffold(
-            resizeToAvoidBottomInset: false,
-            appBar: AppBar(
-              title: const Text(
-                'Shop',
-                style: TextStyle(color: Colors.black),
-              ),
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, CartPage.route);
-                    },
-                    icon: const Icon(
-                      Icons.shopping_cart_outlined,
-                    ),
-                    color: Colors.black,
-                  ),
-                )
-              ],
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              systemOverlayStyle: const SystemUiOverlayStyle(
-                  statusBarColor: Colors.transparent),
-              bottom: const PreferredSize(
-                // ignore: sort_child_properties_last
-                child: dividerGrey,
-                preferredSize: Size.fromHeight(5.0),
-              ),
+    return SafeArea(
+      child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          appBar: AppBar(
+            title: const Text(
+              'Shop',
+              style: TextStyle(color: Colors.black),
             ),
-            body: Center(
-              child: Column(
-                children: [
-                  Expanded(
-                    child: FutureBuilder(
-                        future: _data,
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            return ProductList(
-                              products: snapshot.data as List<Product>,
-                            );
-                          } else if (snapshot.hasError) {
-                            return const Center(
-                              child: Text('Terjadi Kesalahan'),
-                            );
-                          } else {
-                            return const Center(
-                                child: CircularProgressIndicator());
-                          }
-                        }),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, CartPage.route);
+                  },
+                  icon: const Icon(
+                    Icons.shopping_cart_outlined,
                   ),
-                  CustomButton(
-                      text: 'Keluar',
-                      color: Colors.blue,
-                      onPressed: () {
-                        context.read<AuthBloc>().add(const AuthLogoutPressed());
-                      })
-                ],
-              ),
-            )),
-      ),
+                  color: Colors.black,
+                ),
+              )
+            ],
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            systemOverlayStyle:
+                const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+            bottom: const PreferredSize(
+              // ignore: sort_child_properties_last
+              child: dividerGrey,
+              preferredSize: Size.fromHeight(5.0),
+            ),
+          ),
+          body: Center(
+            child: Column(
+              children: [
+                Expanded(
+                  child: FutureBuilder(
+                      future: _data,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return ProductList(
+                            products: snapshot.data as List<Product>,
+                          );
+                        } else if (snapshot.hasError) {
+                          return const Center(
+                            child: Text('Terjadi Kesalahan'),
+                          );
+                        } else {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
+                      }),
+                ),
+                CustomButton(
+                    text: 'Keluar',
+                    color: Colors.blue,
+                    onPressed: () {
+                      context.read<AuthBloc>().add(const AuthLogoutPressed());
+                    })
+              ],
+            ),
+          )),
     );
   }
 }
